@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8"><title>Escala ON 0.3m</title>
+    <style>
+        body{font-family:sans-serif;padding:40px;background:#fef9fb}
+        .card{max-width:600px;margin:auto;background:white;padding:30px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.1);border-top:8px solid #6a1b9a}
+        .telescope-img { width: 100%; height: 100px; object-fit: cover; object-position: center; border-radius: 8px; margin: 10px 0; display: block; }
+        .info{background:#f3e5f5;padding:15px;border-radius:8px;margin:20px 0}
+        .btn-ocultacao { display: block; background: #6a1b9a; color: white; padding: 12px; margin-bottom: 8px; text-decoration: none; border-radius: 6px; font-weight: bold; text-align: center; }
+        .lista-item { background: #fdf2f8; margin-bottom: 5px; padding: 10px; border-radius: 5px; border-left: 5px solid #6a1b9a; font-weight: bold; }
+        .aux-box { background: #fce4ec; padding: 15px; border-radius: 8px; margin-top: 20px; border: 1px solid #f8bbd0; }
+        .btn-download { display: inline-block; background: #4a148c; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px; font-size: 13px; font-weight: bold; margin-top: 5px; }
+        .btn{display:inline-block;padding:10px 20px;background:#666;color:white;text-decoration:none;border-radius:5px}
+
+        /* Caixa de Efemérides (Tema Magenta Dark) */
+        .solar-box {
+            background: #311b92; padding: 12px; border-radius: 8px; 
+            font-size: 0.85em; color: #fce4ec; margin: 15px 0; 
+            border: 1px solid #6a1b9a; line-height: 1.6;
+        }
+        .solar-title { font-weight: bold; color: #f06292; display: block; margin-bottom: 5px; }
+        .utc-tag { font-size: 0.75em; background: #6a1b9a; padding: 2px 4px; border-radius: 3px; color: white; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1> Telescópio Observatório Nacional 0.32m</h1>
+        <h3 id="exibirData">Carregando data...</h3>
+        <img src="../imagens/20250209_190755.jpg" alt="Telescópio Zeiss" class="telescope-img">
+        
+        <div class="info">
+            <p><strong>Observadores:</strong> <span id="obs">---</span></p>
+            <p><strong>Projeto:</strong> <span id="proj">---</span></p>
+            <p><strong>Detector:</strong> <span id="det">---</span></p>
+            <p><strong>PI:</strong> <span id="PI">---</span></p>
+        </div>
+
+        <div id="secaoOcultacao" style="display:none; margin: 20px 0;"><h3 style="color: #6a1b9a;"> Ocultações </h3><div id="listaLinks"></div></div>
+        <div id="secaoRotação" style="display:none; margin: 20px 0;"><h3 style="color: #6a1b9a;"> Rotação </h3><div id="listaRotação"></div></div>
+        <div id="secaoAstrometria" style="display:none; margin: 20px 0;"><h3 style="color: #6a1b9a;"> Astrometria </h3><div id="listaAstrometria"></div></div>
+
+        <div id="dadosSolares" class="solar-box">
+            <span class="solar-title">Horários importantes <span class="utc-tag">UTC</span></span>
+            <strong>Anoitecer:</strong> Civil: <span id="civil_fim">...</span> | Náutico: <span id="nautico_fim">...</span><br>
+            <strong>Amanhecer:</strong> Náutico: <span id="nautico_ini">...</span> | Civil: <span id="civil_ini">...</span>
+        </div>
+        
+        <p><strong>Nota: </strong> <span id="Nota">---</span></p>
+
+        <div id="secaoAux" style="display:none;" class="aux-box">
+            <strong>Arquivos Auxiliares:</strong><br>
+            <span id="nomeFov" style="font-size: 14px;"></span><br>
+            <a id="linkDownload" href="#" class="btn-download" download>Baixar arquivo FOV</a>
+        </div>
+        
+        <div id="containerPlano" style="display:none; margin-top:15px; border-top: 1px solid #ccc; padding-top:10px;">
+            <strong> Projeto Backup:</strong> <a id="linkPlano" href="#" target="_blank">Plano da noite</a>
+        </div>
+        
+        <br><a href="../index.html" class="btn">← Voltar</a>
+    </div>
+
+    <script>
+        const p = new URLSearchParams(window.location.search);
+        const dia = p.get('d');
+        const mes = p.get('m');
+        const ano = p.get('a');
+    
+        if (dia && mes && ano) {
+            const dataFormatada = `${dia.padStart(2, '0')}/${mes.padStart(2, '0')}/${ano}`;
+            document.getElementById('exibirData').innerText = `Noite de: ${dataFormatada}`;
+        }
+        
+        const projeto = p.get('proj') || "";
+        const detector = p.get('det') || "";
+        document.getElementById('obs').innerText = p.get('obs') || "---";
+        document.getElementById('proj').innerText = projeto;
+        document.getElementById('det').innerText = detector || "Não especificado";
+        document.getElementById('PI').innerText = p.get('PI') || "---";
+        document.getElementById('Nota').innerText = p.get('Nota') || "Sem notas";
+
+        if (detector) {
+            const d = detector.toLowerCase();
+            let arq = "";
+            if (d.includes("ikonl")) arq = "ikonl-zeiss.fov";
+            if (d.includes("ixon")) arq = "ixon-zeiss.fov";
+            if (arq) {
+                document.getElementById('secaoAux').style.display = 'block';
+                document.getElementById('nomeFov').innerText = "Configuração para " + detector;
+                document.getElementById('linkDownload').href = "../fov/" + arq;
+            }
+        }
+
+        // --- 1. SEÇÃO DE OCULTAÇÃO ---
+        // Aparece se o nome do projeto contiver "ocultação" OU se houver o parâmetro "links"
+        const linksString = p.get('links');
+        if (projeto.includes("ocultação") || projeto.includes("occultation") || linksString) {
+            if (linksString) {
+                document.getElementById('secaoOcultacao').style.display = 'block';
+                const container = document.getElementById('listaLinks');
+                container.innerHTML = ""; // Limpa antes de preencher
+                linksString.split(',').forEach(par => {
+                    const idx = par.indexOf(':');
+                    if(idx !== -1) {
+                        const a = document.createElement('a');
+                        a.href = par.substring(idx + 1).trim();
+                        a.target = "_blank"; a.className = "btn-ocultacao";
+                        a.innerText = par.substring(0, idx).trim();
+                        container.appendChild(a);
+                    }
+                });
+            }
+        }
+    
+        // --- 2. SEÇÃO DE ROTAÇÃO ---
+        // Aparece se o nome do projeto contiver "rotação" OU se houver o parâmetro "alvos"
+        const alvosString = p.get('alvos');
+        if (projeto.includes("rotação") || projeto.includes("rotation") || alvosString) {
+            if (alvosString) {
+                document.getElementById('secaoRotação').style.display = 'block';
+                const container = document.getElementById('listaRotação');
+                container.innerHTML = "";
+                alvosString.split(',').forEach((alvo, i) => {
+                    const div = document.createElement('div');
+                    div.className = 'lista-item';
+                    div.innerText = `${i + 1}: ${alvo.trim()}`;
+                    container.appendChild(div);
+                });
+            }
+        }
+    
+        // --- 3. SEÇÃO DE ASTROMETRIA ---
+        // Aparece se o nome do projeto contiver "astrometria" OU se houver o parâmetro "campos"
+        const camposString = p.get('campos');
+        if (projeto.includes("astrometria") || projeto.includes("astrometry") || camposString) {
+            if (camposString) {
+                document.getElementById('secaoAstrometria').style.display = 'block';
+                const container = document.getElementById('listaAstrometria');
+                container.innerHTML = "";
+                camposString.split(',').forEach((campo, i) => {
+                    const div = document.createElement('div');
+                    div.className = 'lista-item';
+                    div.innerText = `${i + 1}: ${campo.trim()}`;
+                    container.appendChild(div);
+                });
+            }
+        }
+        
+        if (p.get('plano')) {
+            document.getElementById('containerPlano').style.display = 'block';
+            document.getElementById('linkPlano').href = "../" + p.get('plano');
+        }
+
+        // --- EFEMÉRIDES UTC (PICO DOS DIAS - ZEISS) ---
+        async function buscarEfemérides() {
+            const lat = "-22.896"; 
+            const lon = "-43.224";
+            
+            if (!dia || !mes || !ano) return;
+            const dataISO = `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
+
+            try {
+                const resp = await fetch(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&date=${dataISO}&formatted=0`);
+                const data = await resp.json();
+
+                if (data.status === "OK") {
+                    const d = data.results;
+                    const formatarUTC = (isoStr) => {
+                        return new Date(isoStr).toLocaleTimeString('pt-BR', { 
+                            hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC' 
+                        });
+                    };
+
+                    document.getElementById('civil_fim').innerText = formatarUTC(d.civil_twilight_end);
+                    document.getElementById('nautico_fim').innerText = formatarUTC(d.nautical_twilight_end);
+                    document.getElementById('nautico_ini').innerText = formatarUTC(d.nautical_twilight_begin);
+                    document.getElementById('civil_ini').innerText = formatarUTC(d.civil_twilight_begin);
+                }
+            } catch (erro) {
+                document.getElementById('dadosSolares').innerHTML = "⚠️ Erro ao carregar horários.";
+            }
+        }
+
+        buscarEfemérides();
+    </script>
+</body>
+</html>

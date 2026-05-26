@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Escala SOAR</title>
+    <style>
+        body{font-family:sans-serif;padding:40px;background:#f0f4f8}
+        .card{max-width:600px;margin:auto;background:white;padding:30px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.1);border-top:8px solid #1967d2}
+        .telescope-img { width: 100%; height: 100px; object-fit: cover; object-position: center; border-radius: 8px; margin: 10px 0; display: block; }
+        .info{background:#e8f0fe;padding:15px;border-radius:8px;margin:20px 0}
+        .btn-ocultacao { display: block; background: #1967d2; color: white; padding: 12px; margin-bottom: 8px; text-decoration: none; border-radius: 6px; font-weight: bold; text-align: center; }
+        .lista-item { background: #f1f3f4; margin-bottom: 5px; padding: 10px; border-radius: 5px; border-left: 5px solid #1967d2; font-weight: bold; }
+        .solar-box { background: #2c3e50; padding: 12px; border-radius: 8px; font-size: 0.85em; color: #ecf0f1; margin-bottom: 15px; border: 1px solid #34495e; line-height: 1.6; }
+        .solar-title { font-weight: bold; color: #3498db; display: block; margin-bottom: 5px; }
+        .utc-tag { font-size: 0.75em; background: #1967d2; padding: 2px 4px; border-radius: 3px; vertical-align: middle; }
+        
+        /* Estilo padronizado da caixa auxiliar */
+        .aux-box { background: #e8f0fe; padding: 15px; border-radius: 8px; margin-top: 20px; border: 1px solid #d1e3f8; }
+        .btn-download { display: inline-block; background: #1967d2; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px; font-size: 13px; font-weight: bold; margin-top: 5px; }
+        
+        .btn{display:inline-block;padding:10px 20px;background:#666;color:white;text-decoration:none;border-radius:5px}
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1> Telescópio SOAR 4.1m</h1>
+        <h3 id="exibirData">Carregando data...</h3>
+        <img src="../imagens/SOAR.png" alt="Telescópio SOAR" class="telescope-img">
+        
+        <div class="info">
+            <p><strong>Observadores:</strong> <span id="obs">---</span></p>
+            <p><strong>Projeto:</strong> <span id="proj">---</span></p>
+            <p><strong>Detector:</strong> <span id="det">---</span></p> 
+            <p><strong>PI:</strong> <span id="PI">---</span></p>
+        </div>
+
+        <div id="secaoOcultacao" style="display:none; margin: 20px 0;"><h3 style="color: #1967d2;"> Ocultações </h3><div id="listaLinks"></div></div>
+        <div id="secaoRotação" style="display:none; margin: 20px 0;"><h3 style="color: #1967d2;"> Rotação </h3><div id="listaRotação"></div></div>
+        <div id="secaoAstrometria" style="display:none; margin: 20px 0;"><h3 style="color: #1967d2;"> Astrometria </h3><div id="listaAstrometria"></div></div>
+
+        <div id="dadosSolares" class="solar-box">
+            <span class="solar-title">Horários importantes <span class="utc-tag">UTC</span></span>
+            <strong>Anoitecer:</strong> Civil: <span id="civil_fim">...</span> | Náutico: <span id="nautico_fim">...</span><br>
+            <strong>Amanhecer:</strong> Náutico: <span id="nautico_ini">...</span> | Civil: <span id="civil_ini">...</span>
+        </div>
+        
+        <p><strong>Nota: </strong> <span id="Nota">---</span></p>
+
+        <div id="secaoAux" style="display:none;" class="aux-box">
+            <strong>Arquivos Auxiliares:</strong><br>
+            <span id="nomeFov" style="font-size: 14px;"></span><br>
+            <a id="linkDownload" href="#" class="btn-download" download>Baixar arquivo FOV</a>
+        </div>
+
+        <br><a href="../index.html" class="btn">← Voltar</a>
+    </div>
+
+    <script>
+        const p = new URLSearchParams(window.location.search);
+        const dia = p.get('d');
+        const mes = p.get('m');
+        const ano = p.get('a');
+    
+        if (dia && mes && ano) {
+            const dataFormatada = `${dia.padStart(2, '0')}/${mes.padStart(2, '0')}/${ano}`;
+            document.getElementById('exibirData').innerText = `Noite de: ${dataFormatada}`;
+        }
+        
+        const projeto = p.get('proj') || "";
+        const detector = p.get('det') || "";
+        document.getElementById('obs').innerText = p.get('obs') || "---";
+        document.getElementById('proj').innerText = projeto;
+        document.getElementById('det').innerText = detector || "Não especificado";
+        document.getElementById('PI').innerText = p.get('PI') || "---";
+        document.getElementById('Nota').innerText = p.get('Nota') || "Sem notas";
+
+        // Lógica de Detector corrigida para SOAR
+        if (detector) {
+            const d = detector.toLowerCase();
+            let arq = "";
+            if (d.includes("raptor")) arq = "raptor-soar.fov";
+            if (d.includes("goodman")) arq = "goodman-soar.fov";
+            
+            if (arq) {
+                document.getElementById('secaoAux').style.display = 'block';
+                document.getElementById('nomeFov').innerText = "Configuração para " + detector;
+                document.getElementById('linkDownload').href = "../fov/" + arq;
+            }
+        }
+
+        const linksString = p.get('links');
+        if (projeto.toLowerCase().includes("ocultação") || linksString) {
+            if (linksString) {
+                document.getElementById('secaoOcultacao').style.display = 'block';
+                const container = document.getElementById('listaLinks');
+                linksString.split(',').forEach(par => {
+                    const idx = par.indexOf(':');
+                    if(idx !== -1) {
+                        const a = document.createElement('a');
+                        a.href = par.substring(idx + 1).trim();
+                        a.target = "_blank"; a.className = "btn-ocultacao";
+                        a.innerText = par.substring(0, idx).trim();
+                        container.appendChild(a);
+                    }
+                });
+            }
+        }
+
+        const alvosString = p.get('alvos');
+        if (projeto.toLowerCase().includes("rotação") || alvosString) {
+            if (alvosString) {
+                document.getElementById('secaoRotação').style.display = 'block';
+                const container = document.getElementById('listaRotação');
+                alvosString.split(',').forEach((alvo, i) => {
+                    const div = document.createElement('div');
+                    div.className = 'lista-item';
+                    div.innerText = `${i + 1}: ${alvo.trim()}`;
+                    container.appendChild(div);
+                });
+            }
+        }
+
+        const camposString = p.get('campos');
+        if (projeto.toLowerCase().includes("astrometria") || camposString) {
+            if (camposString) {
+                document.getElementById('secaoAstrometria').style.display = 'block';
+                const container = document.getElementById('listaAstrometria');
+                camposString.split(',').forEach((campo, i) => {
+                    const div = document.createElement('div');
+                    div.className = 'lista-item';
+                    div.innerText = `Campo ${i + 1}: ${campo.trim()}`;
+                    container.appendChild(div);
+                });
+            }
+        }
+
+        // --- BUSCA DE EFEMÉRIDES CORRIGIDA (CERRO PACHÓN - CHILE) ---
+        async function buscarEfemérides() {
+            const lat = "-30.238"; // Coordenada SOAR
+            const lon = "-70.733"; // Coordenada SOAR
+            
+            if (!dia || !mes || !ano) return;
+            const dataISO = `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
+
+            try {
+                const resp = await fetch(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&date=${dataISO}&formatted=0`);
+                const data = await resp.json();
+
+                if (data.status === "OK") {
+                    const d = data.results;
+                    const formatarUTC = (isoStr) => {
+                        return new Date(isoStr).toLocaleTimeString('pt-BR', { 
+                            hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC' 
+                        });
+                    };
+
+                    document.getElementById('civil_fim').innerText = formatarUTC(d.civil_twilight_end);
+                    document.getElementById('nautico_fim').innerText = formatarUTC(d.nautical_twilight_end);
+                    document.getElementById('nautico_ini').innerText = formatarUTC(d.nautical_twilight_begin);
+                    document.getElementById('civil_ini').innerText = formatarUTC(d.civil_twilight_begin);
+                }
+            } catch (erro) {
+                document.getElementById('dadosSolares').innerHTML = "Erro ao carregar horários.";
+            }
+        }
+
+        buscarEfemérides();
+    </script>
+</body>
+</html>

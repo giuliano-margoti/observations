@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos de Observação</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0d1117; 
+            color: #c9d1d9; 
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .btn-voltar {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: #58a6ff;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .btn-voltar:hover {
+            color: #79c0ff;
+        }
+
+        .btn-voltar svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 1rem;
+        }
+
+        header h1 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            color: #8b949e;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .projetos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            border-color: #58a6ff;
+        }
+
+        .card h2 {
+            color: #ffffff;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .tag-observatorio {
+            display: inline-block;
+            background-color: #1f6feb;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            width: max-content;
+        }
+
+        .card p {
+            color: #8b949e;
+            font-size: 0.95rem;
+            flex-grow: 1; 
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-pdf {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            background-color: transparent;
+            color: #58a6ff;
+            border: 1px solid #30363d;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-pdf:hover {
+            background-color: rgba(88, 166, 255, 0.1);
+            border-color: #58a6ff;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .projetos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="../index.html" class="btn-voltar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Voltar para o calendário
+        </a>
+
+        <header>
+            <h1>Projetos de Observação</h1>
+            <p>Lista de propostas aprovadas para observação OPD e SOAR.</p>
+        </header>
+
+        <div class="projetos-grid">
+
+            <article class="card">
+                <h2>2026A</h2>
+                <p>Neste semestre obtivemos 35 noites de observação relativas a 6 projetos:<br>
+                   B&C 0.60cm - IAG: 18 noites<br>
+                   PE 1.60m: 9 noites<br>
+                   SOAR 4.10m: 8 noites<br></p>
+                <a href="../observacoes/estatistica.html" target="_blank" rel="noopener noreferrer" class="btn-pdf">Veja as estatísticas</a>
+            </article>
+            
+            <article class="card">
+                <h2>Rotational Characterization of Trans-Neptunian Object 90568 Goibniu (2004 GV9)</h2>
+                <span class="tag-observatorio">SOAR</span>
+                <p>PI: Giuliano Margoti<br>
+                Semestre: 2026A</p>
+                <a href="proposal-proposal2597.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf">Ver Projeto</a>
+            </article>
+
+            <article class="card">
+                <h2>Obtaining rotation light curves of Neptune and Uranus Trojans to determine their 3D shapes</h2>
+                <span class="tag-observatorio">SOAR</span>
+                <p>PI: Eros de Oliveira Gradovski<br>
+                   Semestre: 2026A</p>
+                <a href="proposal-proposal2597.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf">Ver Projeto</a>
+            </article>
+
+            <article class="card">
+                <h2>Studying small Solar System bodies through stellar occultations</h2>
+                <span class="tag-observatorio">OPD - PE</span>
+                <p>PI: Julio Ignacio Bueno de Camargo<br>
+                   Semestre: 2026A</p>
+                <a href="proposal-proposal2613.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf">Ver Projeto</a>
+            </article>
+
+            <article class="card">
+                <h2>Studying small Solar System bodies through stellar occultations</h2>
+                <span class="tag-observatorio">SOAR</span>
+                <p>PI: Julio Ignacio Bueno de Camargo<br>
+                   Semestre: 2026A</p>
+                <a href="proposal-proposal2589.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf">Ver Projeto</a>
+            </article>
+
+            <article class="card">
+                <h2>Rotation light curves of the Jupiter's Trojan asteroid Diomedes, Nestor and Antilochus</h2>
+                <span class="tag-observatorio">OPD - B&C</span>
+                <p>PI: Hélio Honório Dutra<br>
+                   Semestre: 2026A</p>
+                <a href="proposal-proposal2689.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf">Ver Projeto</a>
+            </article>
+
+            <article class="card">
+                <h2>Rotation Photometry of the Trojan object (1143) Odysseus</h2>
+                <span class="tag-observatorio">OPD - B&C</span>
+                <p>PI: Johannes Antunes Nascimento Rodrigues<br>
+                   Semestre: 2026A</p>
+                <a href="proposal-proposal2700.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf">Ver Projeto</a>
+            </article>
+            
+        </div>
+    </div>
+
+</body>
+</html>
