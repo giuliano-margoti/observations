@@ -229,12 +229,12 @@ if (notaParam && notaParam.endsWith('.json')) {
         
 
         function calcularSNR() {
-            const xc = parseFloat(document.getElementById('in_xc').value) || 512;
-            const yc = parseFloat(document.getElementById('in_yc').value) || 512;
-            const r = parseFloat(document.getElementById('in_r').value) || 5;
+            const xc = parseFloat(document.getElementById('in_xc').value) || 512.0;
+            const yc = parseFloat(document.getElementById('in_yc').value) || 512.0;
+            const r = parseFloat(document.getElementById('in_r').value) || 5.0;
             const gain = parseFloat(document.getElementById('in_gain').value) || 1.5;
-            const f_alvo = parseFloat(document.getElementById('in_falvo').value) || 100;
-            const f_cel = parseFloat(document.getElementById('in_fcel').value) || 10;
+            const f_alvo = parseFloat(document.getElementById('in_falvo').value) || 100.0;
+            const f_cel = parseFloat(document.getElementById('in_fcel').value) || 10.0;
 
             const x_min = Math.floor(xc - r);
             const x_max = Math.ceil(xc + r);
