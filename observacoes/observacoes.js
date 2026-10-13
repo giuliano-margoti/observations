@@ -103,7 +103,7 @@
             {dia: 21,mes: 0,ano: 2027,nome: "SOAR: Ocultação", link:"observacoes/soar.html?obs=Julio, Giuliano&proj=SO2026B-009 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&links=Dziewanna:https://lesia.obspm.fr/lucky-star/occ.php?p=169069", classe: "event-soar"},
 
         // SO2026B-002 - Multiband rotational photometry of Jupiter Trojans
-            {dia: 22,mes: 9,ano: 2026,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano, Giovana&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
+            {dia: 22,mes: 9,ano: 2026,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano, Giovana&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4&alvos=58931 Palmys (1998 MK47)", classe: "event-1m60"},
             {dia: 27,mes: 9,ano: 2026,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Jonatã, Johannes&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
             {dia: 28,mes: 9,ano: 2026,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Jonatã, João&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
             {dia: 01,mes: 10,ano: 2026,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
