@@ -47,18 +47,17 @@
         
         
 
-
         <div class="aux-box" style="margin-top: 15px;">
-            <span class="solar-title" style="color: #0d652d; margin-bottom: 10px;">Calculadora de Sinal-Ruído (SNR)</span>
+            <span class="solar-title" style="color: #0d652d; margin-bottom: 10px;">Calculadora de Sinal-Ruído</span>
             
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-                <div><label style="font-size: 13px; font-weight: bold;">Centro X:</label><br><input type="number" id="in_xc" value="512" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
-                <div><label style="font-size: 13px; font-weight: bold;">Centro Y:</label><br><input type="number" id="in_yc" value="512" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
-                <div><label style="font-size: 13px; font-weight: bold;">Abertura (r):</label><br><input type="number" id="in_r" value="5" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
-                <div><label style="font-size: 13px; font-weight: bold;">Ganho:</label><br><input type="number" id="in_gain" value="1" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
-                <div><label style="font-size: 13px; font-weight: bold;">Fluxo Alvo:</label><br><input type="number" id="in_falvo" value="1" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
-                <div><label style="font-size: 13px; font-weight: bold;">Fluxo Céu:</label><br><input type="number" id="in_fcel" value="0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Centro X:</label><br><input type="number" id="in_xc" value="512.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Centro Y:</label><br><input type="number" id="in_yc" value="512.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Abertura (r):</label><br><input type="number" id="in_r" value="5.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Ganho:</label><br><input type="number" id="in_gain" value="1.5" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Fluxo Alvo:</label><br><input type="number" id="in_falvo" value="100.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Fluxo Céu:</label><br><input type="number" id="in_fcel" value="10.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
             </div>
             
 
@@ -95,7 +94,7 @@
         const mes = p.get('m');
         const ano = p.get('a');
         const projeto = p.get('proj') || "";
-        const projetoNormalizado = projeto.toLowerCase(); // DEFINIÇÃO DA VARIÁVEL FALTANTE
+        const projetoNormalizado = projeto.toLowerCase(); 
     
         if (dia && mes && ano) {
             const dataFormatada = `${dia.padStart(2, '0')}/${mes.padStart(2, '0')}/${ano}`;
@@ -227,7 +226,7 @@ if (notaParam && notaParam.endsWith('.json')) {
         }
         buscarEfemérides();
         
-
+        // --- SNR ---
         function calcularSNR() {
             const xc = parseFloat(document.getElementById('in_xc').value) || 512.0;
             const yc = parseFloat(document.getElementById('in_yc').value) || 512.0;
@@ -259,6 +258,9 @@ if (notaParam && notaParam.endsWith('.json')) {
             document.getElementById('out_err').innerText = erro_mag.toFixed(4);
             document.getElementById('resultadoSNR').style.display = 'block';
         }
+
+
+
         
     </script>
 </body>
