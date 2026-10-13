@@ -45,6 +45,35 @@
             <strong>Anoitecer:</strong> Civil: <span id="civil_fim">...</span> | Náutico: <span id="nautico_fim">...</span><br>
             <strong>Amanhecer:</strong> Náutico: <span id="nautico_ini">...</span> | Civil: <span id="civil_ini">...</span>
         </div>
+
+
+
+
+        <div class="aux-box" style="margin-top: 15px;">
+            <span class="solar-title" style="color: #0d652d; margin-bottom: 10px;">Calculadora de Sinal-Ruído</span>
+            
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                <div><label style="font-size: 13px; font-weight: bold;">Centro X:</label><br><input type="number" id="in_xc" value="512.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Centro Y:</label><br><input type="number" id="in_yc" value="512.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Abertura (r):</label><br><input type="number" id="in_r" value="5.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Ganho:</label><br><input type="number" id="in_gain" value="1.5" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Fluxo Alvo:</label><br><input type="number" id="in_falvo" value="100.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Fluxo Céu:</label><br><input type="number" id="in_fcel" value="10.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+            </div>
+            
+
+            <button onclick="calcularSNR()" class="btn-download" style="width: 100%; border: none; cursor: pointer; padding: 10px;">Calcular SNR</button>
+            
+
+            <div id="resultadoSNR" style="display: none; margin-top: 15px; background: white; padding: 12px; border-radius: 6px; font-size: 14px; border: 1px solid #c8e6c9;">
+                <p style="margin: 0 0 5px 0;"><strong>Pixels na abertura (n_pix):</strong> <span id="out_npix"></span></p>
+                <p style="margin: 0 0 5px 0;"><strong>Sinal/Ruído (SNR):</strong> <span id="out_snr" style="color: #0d652d; font-weight: bold; font-size: 16px;"></span></p>
+                <p style="margin: 0;"><strong>Erro na magnitude:</strong> <span id="out_err" style="color: #d32f2f; font-weight: bold;"></span></p>
+            </div>
+        </div>
+
+
         
         <p><strong>Nota: </strong> <span id="Nota">---</span></p>
 
@@ -183,6 +212,42 @@
         }
 
         buscarEfemérides();
+
+        // --- SNR ---
+        function calcularSNR() {
+            const xc = parseFloat(document.getElementById('in_xc').value) || 512.0;
+            const yc = parseFloat(document.getElementById('in_yc').value) || 512.0;
+            const r = parseFloat(document.getElementById('in_r').value) || 5.0;
+            const gain = parseFloat(document.getElementById('in_gain').value) || 1.5;
+            const f_alvo = parseFloat(document.getElementById('in_falvo').value) || 100.0;
+            const f_cel = parseFloat(document.getElementById('in_fcel').value) || 10.0;
+
+            const x_min = Math.floor(xc - r);
+            const x_max = Math.ceil(xc + r);
+            const y_min = Math.floor(yc - r);
+            const y_max = Math.ceil(yc + r);
+
+            let n_pix = 0;
+            for (let x = x_min; x <= x_max; x++) {
+                for (let y = y_min; y <= y_max; y++) {
+                    const distancia = Math.sqrt(Math.pow(x - xc, 2) + Math.pow(y - yc, 2));
+                    if (distancia <= r) {
+                        n_pix++;
+                    }
+                }
+            }
+
+            const snr = (f_alvo * gain) / Math.sqrt((f_alvo + n_pix * f_cel) * gain);
+            const erro_mag = 1.0857 / snr;
+
+            document.getElementById('out_npix').innerText = n_pix;
+            document.getElementById('out_snr').innerText = snr.toFixed(2);
+            document.getElementById('out_err').innerText = erro_mag.toFixed(4);
+            document.getElementById('resultadoSNR').style.display = 'block';
+        }
+
+
+        
     </script>
 </body>
 </html>
