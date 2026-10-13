@@ -52,12 +52,12 @@
             
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-                <div><label style="font-size: 13px; font-weight: bold;">Centro X:</label><br><input type="number" id="in_xc" value="512.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
-                <div><label style="font-size: 13px; font-weight: bold;">Centro Y:</label><br><input type="number" id="in_yc" value="512.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
-                <div><label style="font-size: 13px; font-weight: bold;">Abertura (r):</label><br><input type="number" id="in_r" value="5.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
-                <div><label style="font-size: 13px; font-weight: bold;">Ganho:</label><br><input type="number" id="in_gain" value="1.5" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
-                <div><label style="font-size: 13px; font-weight: bold;">Fluxo Alvo:</label><br><input type="number" id="in_falvo" value="100.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
-                <div><label style="font-size: 13px; font-weight: bold;">Fluxo Céu:</label><br><input type="number" id="in_fcel" value="10.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Centro X:</label><br><input type="text" id="in_xc" value="512.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Centro Y:</label><br><input type="text" id="in_yc" value="512.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Abertura (r):</label><br><input type="text" id="in_r" value="5.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Ganho:</label><br><input type="text" id="in_gain" value="1.5" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Fluxo Alvo:</label><br><input type="text" id="in_falvo" value="100.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Fluxo Céu:</label><br><input type="text" id="in_fcel" value="10.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
             </div>
             
 
@@ -228,12 +228,12 @@ if (notaParam && notaParam.endsWith('.json')) {
         
         // --- SNR ---
         function calcularSNR() {
-            const xc = parseFloat(document.getElementById('in_xc').value) || 512.0;
-            const yc = parseFloat(document.getElementById('in_yc').value) || 512.0;
-            const r = parseFloat(document.getElementById('in_r').value) || 5.0;
-            const gain = parseFloat(document.getElementById('in_gain').value) || 1.5;
-            const f_alvo = parseFloat(document.getElementById('in_falvo').value) || 100.0;
-            const f_cel = parseFloat(document.getElementById('in_fcel').value) || 10.0;
+            const xc = parseFloat(document.getElementById('in_xc').value.replace(',', '.')) || 512.0;
+            const yc = parseFloat(document.getElementById('in_yc').value.replace(',', '.')) || 512.0;
+            const r = parseFloat(document.getElementById('in_r').value.replace(',', '.')) || 5.0;
+            const gain = parseFloat(document.getElementById('in_gain').value.replace(',', '.')) || 1.5;
+            const f_alvo = parseFloat(document.getElementById('in_falvo').value.replace(',', '.')) || 100.0;
+            const f_cel = parseFloat(document.getElementById('in_fcel').value.replace(',', '.')) || 10.0;
 
             const x_min = Math.floor(xc - r);
             const x_max = Math.ceil(xc + r);
