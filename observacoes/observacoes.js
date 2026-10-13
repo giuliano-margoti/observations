@@ -117,12 +117,12 @@
             {dia: 22,mes: 1,ano: 2027,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
 
         // OI2026B-012 - Mutual Phenomena of Jupiter's satellites
-            {dia: 25,mes: 9,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/1m60.html?obs=Rafael, Jonatã, Edilson&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
-            {dia: 29,mes: 9,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/1m60.html?obs=Jonatã, Viviane, Edilson&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
-            {dia: 13,mes: 10,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
-            {dia: 15,mes: 10,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
-            {dia: 06,mes: 11,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
-            {dia: 19,mes: 11,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
+            {dia: 25,mes: 9,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/iag.html?obs=Rafael, Jonatã, Edilson&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
+            {dia: 29,mes: 9,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/iag.html?obs=Jonatã, Viviane, Edilson&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
+            {dia: 13,mes: 10,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/iag.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
+            {dia: 15,mes: 10,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/iag.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
+            {dia: 06,mes: 11,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/iag.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
+            {dia: 19,mes: 11,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/iag.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
 
         // OI2026B-015 - Astrometry of Jupiters Galilean Satellites
             {dia: 1,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=A definir&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl", classe: "event-iag"},
