@@ -140,4 +140,6 @@
             {dia: 11,mes: 11,ano: 2026,nome:  "1m60: Ocultação", link:"observacoes/1m60.html?obs=A definir&proj=OP2026B-004 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&det=sparc4&links=Thereus:https://lesia.obspm.fr/lucky-star/predp0.php", classe: "event-1m60"},
             {dia: 19,mes: 11,ano: 2026,nome:  "1m60: Ocultação", link:"observacoes/1m60.html?obs=A definir&proj=OP2026B-004 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&det=sparc4", classe: "event-1m60"},
 
+            {dia: 30,mes: 9,ano: 2026,nome: "ON: Ocultação", link:"observacoes/on.html?obs=Giuliano Margoti&proj=Observações de ocultações no Observatório Nacional&PI=Giuliano Margoti&links=2000CS8:https://solarsystem.linea.org.br/prediction-event-detail/uYhRLFF4Nl6PFLeRCX19tg&det=qhy", classe: "event-on"},
+
         ];
