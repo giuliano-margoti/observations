@@ -125,11 +125,11 @@
             {dia: 19,mes: 11,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/iag.html?obs=A Definir&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
 
         // OI2026B-015 - Astrometry of Jupiters Galilean Satellites
-            {dia: 1,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=Jonatã, Fabrício&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl", classe: "event-iag"},
-            {dia: 2,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=Luiz, Luís&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl", classe: "event-iag"},
-            {dia: 3,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=Christian, Gabriel&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl", classe: "event-iag"},
-            {dia: 4,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=Giovana, João&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl", classe: "event-iag"},
-            {dia: 5,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=Thamiris, Helio&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl", classe: "event-iag"},
+            {dia: 1,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=Jonatã, Fabrício&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl&Nota=nota-iag.json", classe: "event-iag"},
+            {dia: 2,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=Luiz, Luís&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl&Nota=nota-iag.json", classe: "event-iag"},
+            {dia: 3,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=Christian, Gabriel&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl&Nota=nota-iag.json", classe: "event-iag"},
+            {dia: 4,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=Giovana, João&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl&Nota=nota-iag.json", classe: "event-iag"},
+            {dia: 5,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=Thamiris, Helio&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl&Nota=nota-iag.json", classe: "event-iag"},
                 
         // OP2026B-004 - Study of small bodies in the Solar System with stellar occultations
             {dia: 16,mes: 8,ano: 2026,nome:   "1m60: Ocultação", link:"observacoes/1m60.html?obs=Eros, Jonatã&proj=OP2026B-004 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&det=sparc4&links=Quaoar:https://lesia.obspm.fr/lucky-star/occ.php?p=158076,Weywot:https://lesia.obspm.fr/lucky-star/occ.php?p=158549&Nota=nota-1m60.json&alvos=1871 Astyanax (1971 FF)", classe: "event-1m60"},
